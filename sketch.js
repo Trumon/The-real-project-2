@@ -2,176 +2,91 @@ let ball, floor;
 let base;
 let y=0; 
 let basee; 
-let turtle, balls;
+let j;
+let m;
+let r;
 let house,ground;
 
 function setup() {
     let canvas= new Canvas(5000,5000,);
     world.gravity.y=5;
     noLoop();
-    
-   house = new Sprite(16, 100,8);
-   house.bounciness=1;
 
 
    randomSequence();
-
-    new Sprite(500,1000, [
-        [100,40],
-        [-100,40],
-        [0,-80]
-    ]);
-    Sprite.bounciness=1; 
-
-    new Sprite(1200,1200, [
-        [100,40],
-        [-100,40],
-        [0,-80]
-    ]);
-    Sprite.bounciness=1;
-
-    new Sprite(1200,1200, [
-        [100,40],
-        [-100,40],
-        [0,-80]
-    ]);
-    Sprite.bounciness=1;
-
-    new Sprite(1200,1200, [
-        [100,40],
-        [-100,40],
-        [0,-80]
-    ]);
-    Sprite.bounciness=1;
-
-    new Sprite(700,3000, [
-        [100,40],
-        [-100,40],
-        [0,-80]
-    ]);
-    Sprite.bounciness=1;
-
-    new Sprite(550,2000, [
-        [100,40],
-        [-100,40],
-        [0,-80]
-    ]);
-    Sprite.bounciness=1;
-
-     new Sprite(1000,100, [
-        [300,80],
-        [-300,80],
-        [0,-160]
-    ]);
-    Sprite.bounciness=1;
-
-
-    new Sprite([[8,8],[142,192],[300,90],[8,8]]);
-    Sprite.bounciness=1;
-
-    ball = new Sprite();
-    ball.diameter = 300; 
-    ball.y =1;
-    ball.friction =10;
-    ball.bounciness=1;
-    ball.x= 800;
-
+    
     ball = new Sprite();
     ball.diameter = 400; 
     ball.y =1;
-    ball.x= 100
+    ball.x= 1000
     ball.bounciness=1;
 
     ball = new Sprite();
     ball.diameter = 400; 
     ball.y =1;
-    ball.x= 100
+    ball.x= 900
     ball.bounciness=1;
 
     ball = new Sprite();
-    ball.diameter = 400; 
-    ball.y =1;
-    ball.x= 100
-    ball.bounciness=1;
-
-    ball = new Sprite();
-    ball.diameter = 400; 
-    ball.y =1;
-    ball.x= 100
-    ball.bounciness=1;
-
-    ball = new Sprite();
-    ball.diameter = 400; 
-    ball.y =1;
-    ball.x= 100
-    ball.bounciness=5;
-
-    ball = new Sprite();
-    ball.diameter = 100; 
-    ball.y =1;
-    ball.x= 100
-    ball.bounciness=1;
-
-    ball = new Sprite();
-    ball.diameter = 100; 
-    ball.y =700;
-    ball.x =600
-    ball.bounciness=1; 
-
-    base = new Sprite();
-    base.width = 100;
-    base.height = 100;
-    base.y= 500;
-    ball.bounciness=1; 
-
-    base = new Sprite();
-    base.width = 100;
-    base.height = 100;
-    base.x=300;
-    base.y= 1;
-    base.x= 200;
-    ball.bounciness=1; 
-
-    floor= new Sprite();
-    floor.y=5000;
-    floor.x=4900;
-    floor.w=5000;
-    floor.h=500;
-    floor.collider= 'static';
-    floor.drag = 0;
-    floor.bounciness=0;
-
+    ball.diameter = 600; 
+    ball.y =3000;
+    ball.x= 2000;
+  
     roof= new Sprite();
     roof.y=0;
     roof.x=200;
     roof.w=220000;
     roof.h=50;
-    roof.collider= 'static';
+    roof.collider= 'static'; 
 
+    base = new Sprite();
+    base.width = 500;
+    base.height = 1000;
+    base.y= 4000;
+    base.x=3600;
+    
+    basee = new Sprite(); 
+    basee.width = 500;
+    basee.height = 1000;
+    basee.y= 4000;
+    basee.x=3100;
+    basee.rotation=0; 
 
+    j=new GlueJoint(base, basee);
+   
+     
     door= new Sprite();
-    door.y=600;
-    door.x=200;
+    door.y=4250;
+    door.x=3350;
     door.w=300;
     door.h=500;
+ 
+m=new GlueJoint(base, door, basee); 
 
-    door= new Sprite();
-    door.y=600;
-    door.x=200;
-    door.w=300;
-    door.h=500;
+ doorr= new Sprite();
+    doorr.y=3150;
+    doorr.x=3580;
+    doorr.w=300;
+    doorr.h=710;
 
-    door= new Sprite();
-    door.y=600;
-    door.x=200;
-    door.w=300;
-    door.h=500;
+ triang= new Sprite(3350,3240,[
+        [800,700],
+        [-800,700],
+        [0,-1400]
+    ]);
+    triang.rotation=-90;
 
-    door= new Sprite();
-    door.y=700;
-    door.x=20;
-    door.w=300;
-    door.h=500;
+    r=new GlueJoint(triang, doorr);
+
+    j=new GlueJoint(base, basee, triang, door); 
+
+    floor= new Sprite();
+    floor.y=4600;
+    floor.x=3350;
+    floor.w=1000;
+    floor.h=300;
+    floor.collider= 'static';
+    floor.drag = 0;
 
 
      Lwall= new Sprite();
@@ -183,7 +98,7 @@ function setup() {
      Lwall.drag = 0;
 
     bouncer= new Sprite();
-    bouncer.y=5000;
+    bouncer.y=6000;
     bouncer.x=1000;
     bouncer.w=2900;
     bouncer.h=500;
@@ -192,17 +107,12 @@ function setup() {
 
     floor= new Sprite();
     floor.y=5000;
-    floor.x=2590;
+    floor.x=5000;
     floor.w=500;
     floor.h=53000;
     floor.collider= 'static';
 
-    basee = new Sprite(); 
-    basee.width = 500;
-    basee.height = 500;
-    basee.y= 500;
-    basee.x=400;
-    basee.rotation=45;
+    
    
 }
 
@@ -216,6 +126,10 @@ async function randomSequence() {
 
 function draw() {
     clear();
+
+if(ball>=5000) {
+    loop(1);
+} 
      
 }
 
